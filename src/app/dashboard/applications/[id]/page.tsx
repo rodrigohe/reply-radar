@@ -6,7 +6,7 @@ import { notFound, usePathname } from "next/navigation"
 
 export default function Page() {
   const tokens = usePathname().split('/')
-  const uuid = tokens[tokens.length - 2]
+  const uuid = tokens[tokens.length - 1]
   const data = applications.find(app => app.uuid == uuid);
 
   if (!data) {

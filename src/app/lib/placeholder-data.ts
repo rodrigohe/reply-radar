@@ -1,3 +1,31 @@
+const defaultLocations = [
+  { name: "Toronto", color: "bg-pink-600" },
+  { name: "Vancouver", color: "bg-blue-600" },
+  { name: "California", color: "bg-yellow-600" },
+  { name: "Victoria", color: "bg-red-600" },
+  { name: "Remote", color: "bg-gray-600" },
+  { name: "Sao Paulo", color: "bg-green-600" },
+  { name: "Calgary", color: "bg-orange-600" },
+  { name: "Canada", color: "bg-gray-400" },
+  { name: "Ottawa", color: "bg-purple-600" },
+  { name: "Seattle", color: "bg-blue-500" },
+  { name: "New York", color: "bg-gray-700" },
+  { name: "Waterloo", color: "bg-orange-500" },
+  { name: "Kitchener", color: "bg-green-700" },
+  { name: "London", color: "bg-gray-800" },
+  { name: "Montreal", color: "bg-blue-400" },
+  { name: "Ireland", color: "bg-purple-500" },
+  { name: "Alberta", color: "bg-blue-300" },
+];
+
+const colorClasses = [
+  "bg-pink-600", "bg-blue-600", "bg-yellow-600", "bg-red-600",
+  "bg-gray-600", "bg-green-600", "bg-orange-600", "bg-gray-400",
+  "bg-purple-600", "bg-blue-500", "bg-gray-700", "bg-orange-500",
+  "bg-green-500", "bg-green-700", "bg-gray-800", "bg-blue-400",
+  "bg-purple-500", "bg-blue-300",
+];
+
 const applications = [
   {
     uuid: 'd83179b5-7385-41ff-8601-f9fd993af653',
@@ -59,16 +87,16 @@ const applications = [
     apply_date: '2025-01-24',
     location: 'Remote',
   },
-  // {
-  //   uuid: 'ec77eb07-10a7-4cc7-82f6-864bd7e7dd34',
-  //   stage: 'Rejected',
-  //   company: 'Amazon',
-  //   position: 'Data Engineer I, Workforce Solutions - Analytics and Tech',
-  //   link: 'https://www.amazon.jobs/en/jobs/2798201/data-engineer-i-workforce-solutions-analytics-and-tech?cmpid=SPLICX0248M&ss=paid&utm_campaign=cxro&utm_content=job_posting&utm_medium=social_media&utm_source=linkedin.com',
-  //   ref_id: '2798201',
-  //   apply_date: '2024-11-28',
-  //   location: 'Vancouver',
-  // },
+  {
+    uuid: 'ec77eb07-10a7-4cc7-82f6-864bd7e7dd34',
+    stage: 'Rejected',
+    company: 'Amazon',
+    position: 'Data Engineer I, Workforce Solutions - Analytics and Tech',
+    link: 'https://www.amazon.jobs/en/jobs/2798201/data-engineer-i-workforce-solutions-analytics-and-tech?cmpid=SPLICX0248M&ss=paid&utm_campaign=cxro&utm_content=job_posting&utm_medium=social_media&utm_source=linkedin.com',
+    ref_id: '2798201',
+    apply_date: '2024-11-28',
+    location: 'Vancouver',
+  },
   {
     uuid: 'f1766fcf-ffd6-44b5-b54e-9baab0beb5a3',
     stage: 'Rejected',
@@ -79,26 +107,26 @@ const applications = [
     apply_date: '2024-11-28',
     location: 'Calgary, Toronto, Vancouver',
   },
-  // {
-  //   uuid: 'f8b3b523-c20f-4652-883f-f2bbe7351cb7',
-  //   stage: 'OA',
-  //   company: 'Amazon',
-  //   position: 'Software Development Engineer I, 2025',
-  //   link: 'https://www.amazon.jobs/en/jobs/2849985/software-development-engineer-i-2025',
-  //   ref_id: '2849985',
-  //   apply_date: '2024-12-29',
-  //   location: 'Toronto',
-  // },
-  // {
-  //   uuid: '78b972ea-a101-4426-9ad7-9c775b1b5460',
-  //   stage: 'Applied',
-  //   company: 'Amplifier Health',
-  //   position: 'Software Engineer',
-  //   link: 'https://www.linkedin.com/jobs/view/4093223503',
-  //   ref_id: '',
-  //   apply_date: '2025-01-08',
-  //   location: 'Calgary',
-  // },
+  {
+    uuid: 'f8b3b523-c20f-4652-883f-f2bbe7351cb7',
+    stage: 'OA',
+    company: 'Amazon',
+    position: 'Software Development Engineer I, 2025',
+    link: 'https://www.amazon.jobs/en/jobs/2849985/software-development-engineer-i-2025',
+    ref_id: '2849985',
+    apply_date: '2024-12-29',
+    location: 'Toronto',
+  },
+  {
+    uuid: '78b972ea-a101-4426-9ad7-9c775b1b5460',
+    stage: 'Applied',
+    company: 'Amplifier Health',
+    position: 'Software Engineer',
+    link: 'https://www.linkedin.com/jobs/view/4093223503',
+    ref_id: '',
+    apply_date: '2025-01-08',
+    location: 'Calgary',
+  },
   // {
   //   uuid: '24aad126-bb97-4491-ac3f-e6ec85ecd8f3',
   //   stage: 'Rejected',
@@ -270,4 +298,4 @@ const applications = [
   //   location: 'Canada, Toronto',
   // },
 ]
-export { applications };
+export { applications, defaultLocations, colorClasses };

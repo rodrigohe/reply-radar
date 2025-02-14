@@ -1,7 +1,8 @@
 import { formatDateToLocal } from "@/app/lib/utils";
-import { DeleteApplication, UpdateApplication } from "./buttons";
+import { ApplicationURL, DeleteApplication, UpdateApplication } from "./buttons";
 import { applications } from "@/app/lib/placeholder-data";
 import ApplicationStage from "@/app/ui/applications/stages";
+import Link from "next/link";
 
 export default async function applicationsTable({
   // query,
@@ -37,6 +38,7 @@ export default async function applicationsTable({
                     <p>{formatDateToLocal(application.apply_date)}</p>
                   </div>
                   <div className="flex justify-end gap-2">
+                    <ApplicationURL url={application.link} />
                     <UpdateApplication id={application.uuid} />
                     <DeleteApplication id={application.uuid} />
                   </div>
@@ -47,30 +49,30 @@ export default async function applicationsTable({
           <table className="hidden min-w-full text-black md:table">
             <thead className="rounded-lg text-left text-sm font-normal">
               <tr>
-                <th scope="col" className="px-3 py-5 font-medium">
+                <th scope="col" className="w-1/12 px-3 py-5 font-medium">
                   Stage
                 </th>
-                <th scope="col" className="px-3 py-5 font-medium">
+                <th scope="col" className="w-1/12 px-3 py-5 font-medium">
                   Company
                 </th>
-                <th scope="col" className="px-3 py-5 font-medium">
+                <th scope="col" className="w-1/5 px-3 py-5 font-medium">
                   Position
                 </th>
-                <th scope="col" className="px-3 py-5 font-medium">
-                  URL
-                </th>
-                <th scope="col" className="px-3 py-5 font-medium">
+                <th scope="col" className="w-1/12 px-3 py-5 font-medium">
                   Ref-ID
                 </th>
-                <th scope="col" className="px-3 py-5 font-medium">
-                  Application Date
+                <th scope="col" className="w-1/12 px-3 py-5 font-medium">
+                  Apply Date
                 </th>
-                <th scope="col" className="px-3 py-5 font-medium">
+                <th scope="col" className="w-1/12 px-3 py-5 font-medium">
                   Location
+                </th>
+                <th scope="col" className="w-1/12 px-3 py-5 font-medium">
+                  Last Updated
                 </th>
                 <th
                   scope="col"
-                  className="relative pb-4 pl-3 pr-6 pt-2 sm:pr-6"
+                  className="w-1/12 relative pb-4 pl-3 pr-6 pt-2 sm:pr-6"
                 >
                   <span className="sr-only">Edit</span>
                 </th>
@@ -86,13 +88,14 @@ export default async function applicationsTable({
                     <ApplicationStage stage={application.stage} />
                   </td>
                   <td className="whitespace-nowrap px-3 py-3">
-                    <p>{application.company}</p>
+                    <Link href={`applications/${application.uuid}`} >
+                      {application.company}
+                    </Link>
                   </td>
                   <td className="whitespace-nowrap px-3 py-3">
-                    {application.position}
-                  </td>
-                  <td className="max-w-xs px-3 py-3">
-                    {application.link}
+                    <Link href={`applications/${application.uuid}`} >
+                      {application.position}
+                    </Link>
                   </td>
                   <td className="whitespace-nowrap px-3 py-3">
                     {application.ref_id}
@@ -103,8 +106,12 @@ export default async function applicationsTable({
                   <td className="whitespace-nowrap px-3 py-3">
                     {application.location}
                   </td>
+                  <td className="whitespace-nowrap px-3 py-3">
+                    {formatDateToLocal(application.apply_date)}
+                  </td>
                   <td className="whitespace-nowrap py-3 pl-6 pr-3">
                     <div className="flex justify-end gap-3">
+                      <ApplicationURL url={application.link} />
                       <UpdateApplication id={application.uuid} />
                       <DeleteApplication id={application.uuid} />
                     </div>
