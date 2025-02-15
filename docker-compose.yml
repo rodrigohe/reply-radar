@@ -1,0 +1,15 @@
+volumes:
+  reply_radar_data:
+    driver: local
+services:
+  postgres:
+    image: postgres:alpine
+    container_name: reply_radar
+    environment:
+      - POSTGRES_USER=${POSTGRES_USER}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+      - POSTGRES_DB=${POSTGRES_DATABASE}
+    ports:
+      - "5432:5432"
+    volumes:
+      - reply_radar_data:/var/lib/postgresql/data

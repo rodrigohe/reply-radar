@@ -1,3 +1,5 @@
+import { Locations, Stages } from "./definitions";
+
 export const formatCurrency = (amount: number) => {
   return (amount / 100).toLocaleString('en-US', {
     style: 'currency',
@@ -61,4 +63,32 @@ export const stageOptions = [
   { name: 'Failed', color: 'bg-yellow-800' },
   { name: 'Offer', color: 'bg-green-500' },
   { name: 'Rejected', color: 'bg-red-600' },
+] as Stages[];
+
+export const defaultLocations = [
+  { name: "Toronto", color: "bg-pink-600" },
+  { name: "Vancouver", color: "bg-blue-600" },
+  { name: "California", color: "bg-yellow-600" },
+  { name: "Victoria", color: "bg-red-600" },
+  { name: "Remote", color: "bg-gray-600" },
+  { name: "Sao Paulo", color: "bg-green-600" },
+  { name: "Calgary", color: "bg-orange-600" },
+  { name: "Canada", color: "bg-gray-400" },
+  { name: "Ottawa", color: "bg-purple-600" },
+  { name: "Seattle", color: "bg-blue-500" },
+  { name: "New York", color: "bg-gray-700" },
+  { name: "Waterloo", color: "bg-orange-500" },
+  { name: "Kitchener", color: "bg-green-700" },
+  { name: "London", color: "bg-gray-800" },
+  { name: "Montreal", color: "bg-blue-400" },
+  { name: "Ireland", color: "bg-purple-500" },
+  { name: "Alberta", color: "bg-blue-300" },
+] as Locations[];
+
+export const colorClasses = [
+  "bg-pink-600", "bg-blue-600", "bg-yellow-600", "bg-red-600",
+  "bg-gray-600", "bg-green-600", "bg-orange-600", "bg-gray-400",
+  "bg-purple-600", "bg-blue-500", "bg-gray-700", "bg-orange-500",
+  "bg-green-500", "bg-green-700", "bg-gray-800", "bg-blue-400",
+  "bg-purple-500", "bg-blue-300",
 ];

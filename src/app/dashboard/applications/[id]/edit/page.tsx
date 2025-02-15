@@ -1,13 +1,12 @@
-'use client';
-
-import { applications } from "@/app/lib/placeholder-data"
+import { fetchApplication } from "@/app/lib/data";
 import Breadcrumbs from "@/app/ui/applications/breadcrumbs"
-import { notFound, usePathname } from "next/navigation"
+import EditForm from "@/app/ui/applications/edit-form";
+import { notFound } from "next/navigation"
 
-export default function Page() {
-  const tokens = usePathname().split('/')
-  const uuid = tokens[tokens.length - 2]
-  const data = applications.find(app => app.uuid == uuid);
+export default async function Page(props: { params: Promise<{ id: string }> }) {
+  const params = await props.params;
+  const id = params.id;
+  const data = await fetchApplication(id);
 
   if (!data) {
     notFound();
@@ -19,12 +18,13 @@ export default function Page() {
         breadcrumbs={[
           { label: 'Applications', href: '/dashboard/applications' },
           {
-            label: `${data?.company} - ${data?.position}`,
+            label: `${data.company} - ${data.position}`,
             href: '',
             active: true,
           },
         ]}
       />
+      <EditForm data={data} readOnly={false}/>
     </main>
   )
 }

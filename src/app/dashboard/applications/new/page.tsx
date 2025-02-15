@@ -1,5 +1,5 @@
-import Form from '@/app/ui/applications/create-form';
 import Breadcrumbs from '@/app/ui/applications/breadcrumbs';
+import CreateForm from '@/app/ui/applications/create-form';
 
 export default async function Page() {
   // const customers = await fetchCustomers();
@@ -16,7 +16,7 @@ export default async function Page() {
           },
         ]}
       />
-      <Form />
+      <CreateForm />
     </main>
   );
 }

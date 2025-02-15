@@ -3,12 +3,19 @@
 import { SetStateAction, useState } from "react";
 import { Combobox, ComboboxButton, ComboboxInput, ComboboxOption, ComboboxOptions } from "@headlessui/react";
 import { ChevronUpDownIcon, XMarkIcon, CheckIcon, PlusCircleIcon } from "@heroicons/react/24/solid";
-import { colorClasses, defaultLocations } from "@/app/lib/placeholder-data";
+import { colorClasses, defaultLocations } from "@/app/lib/utils";
+import { Locations } from "@/app/lib/definitions";
 
-
-export default function MultiSelectDropdown() {
+export default function LocationComboBox({
+  defaultSelected,
+  readOnly = false,
+}: {
+  defaultSelected?: Locations[];
+  readOnly?: boolean;
+}) {
+  console.log(defaultSelected)
   const [locations, setLocations] = useState(defaultLocations);
-  const [selectedLocations, setSelectedLocations] = useState<typeof locations>([]);
+  const [selectedLocations, setSelectedLocations] = useState<Locations[]>(defaultSelected ?? []);
   const [query, setQuery] = useState("");
 
   // Filter locations based on user input
@@ -33,10 +40,10 @@ export default function MultiSelectDropdown() {
 
   return (
     <div>
-      <Combobox value={selectedLocations} onChange={setSelectedLocations} multiple>
+      <Combobox value={selectedLocations} onChange={setSelectedLocations} multiple disabled={readOnly}>
         <div className="relative">
           {/* Search Input with Selected Items */}
-          <div className="flex flex-wrap items-center gap-2 border border-gray-300 rounded-lg bg-yellow-50 py-2 px-3 min-h-[40px]">
+          <div className="flex flex-wrap items-center gap-2 border border-gray-300 rounded-lg bg-yellow-50 py-1 px-2 min-h-[40px]">
             {selectedLocations.map((location) => (
               <div
                 key={location.name}
@@ -56,9 +63,9 @@ export default function MultiSelectDropdown() {
               </div>
             ))}
             <ComboboxInput
-              className="flex-1 focus:outline-none bg-transparent text-black"
+              className="flex-1 focus:outline-none bg-transparent text-black text-sm"
               onChange={(event: { target: { value: SetStateAction<string>; }; }) => setQuery(event.target.value)}
-              placeholder={selectedLocations.length === 0 ? "Search locations..." : ""}
+              placeholder={readOnly ? '' : (selectedLocations?.length === 0 ? "Search locations..." : "")}
             />
             <ComboboxButton className="absolute inset-y-0 right-2 flex items-center">
               <ChevronUpDownIcon className="w-5 h-5 text-gray-500" />

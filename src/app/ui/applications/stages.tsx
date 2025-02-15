@@ -1,16 +1,13 @@
 import clsx from "clsx";
-import { stageOptions } from "@/app/lib/utils";
+import { Stages } from "@/app/lib/definitions";
 
-export default function ApplicationStage({ stage }: { stage: string }) {
-  const getStageColor = (stage: string): string =>
-    stageOptions.find(stages => stages.name === stage)?.color || 'bg-gray-200';
-
+export default function ApplicationStage({ stage }: { stage?: Stages}) {
   return (
     <span className={clsx(
-      'inline-flex items-center rounded-lg px-2 py-2 text-xs',
-      getStageColor(stage)
+      'inline-flex items-center px-2 py-1 text-white text-sm rounded',
+      stage?.color
     )}>
-      {stage}
+      {stage?.name}
     </span>
   );
 }
