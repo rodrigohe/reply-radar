@@ -2,17 +2,16 @@ import { formatDateToLocal } from "@/app/lib/utils";
 import { ApplicationURL, DeleteApplication, UpdateApplication } from "./buttons";
 import ApplicationStage from "@/app/ui/applications/stages";
 import Link from "next/link";
-import { fetchAllApplications } from "@/app/lib/data";
+import { fetchFilteredApplications } from "@/app/lib/data";
 
 export default async function applicationsTable({
-    query,
-    currentPage,
+  query,
+  currentPage,
 }: {
   query: string;
   currentPage: number;
 }) {
-  const applications = await fetchAllApplications();
-  // console.log(test)
+  const applications = await fetchFilteredApplications(query, currentPage);
 
   return (
     <div className="mt-6 flow-root">
@@ -31,7 +30,7 @@ export default async function applicationsTable({
                     </div>
                     <p className="text-sm">{application.position}</p>
                   </div>
-                  <ApplicationStage stage={application.stage} />
+                  <ApplicationStage stageName={application.stage} />
                 </div>
                 <div className="flex w-full items-center justify-between pt-4">
                   <div>
@@ -46,33 +45,33 @@ export default async function applicationsTable({
               </div>
             ))}
           </div>
-          <table className="hidden min-w-full text-black md:table">
+          <table className="hidden table-fixed min-w-full text-black md:table">
             <thead className="rounded-lg text-left text-sm font-normal">
               <tr>
-                <th scope="col" className="w-1/12 px-3 py-5 font-medium">
+                <th scope="col" className="max-w-1/12 px-3 py-5 font-medium">
                   Stage
                 </th>
-                <th scope="col" className="w-1/12 px-3 py-5 font-medium">
+                <th scope="col" className="max-w-1/12 px-3 py-5 font-medium">
                   Company
                 </th>
-                <th scope="col" className="w-1/5 px-3 py-5 font-medium">
+                <th scope="col" className="max-w-1/5 px-3 py-5 font-medium">
                   Position
                 </th>
-                <th scope="col" className="w-1/12 px-3 py-5 font-medium">
+                <th scope="col" className="max-w-1/12 px-3 py-5 font-medium">
                   Ref-ID
                 </th>
-                <th scope="col" className="w-1/12 px-3 py-5 font-medium">
+                <th scope="col" className="max-w-1/12 px-3 py-5 font-medium">
                   Apply Date
                 </th>
-                <th scope="col" className="w-1/5 px-3 py-5 font-medium">
+                <th scope="col" className="max-w-1/5 px-3 py-5 font-medium">
                   Location
                 </th>
-                <th scope="col" className="w-1/12 px-3 py-5 font-medium">
+                <th scope="col" className="max-w-1/12 px-3 py-5 font-medium">
                   Last Updated
                 </th>
                 <th
                   scope="col"
-                  className="w-1/12 relative pb-4 pl-3 pr-6 pt-2 sm:pr-6"
+                  className="max-w-1/12 relative pb-4 pl-3 pr-6 pt-2 sm:pr-6"
                 >
                   <span className="sr-only">Edit</span>
                 </th>
@@ -84,28 +83,28 @@ export default async function applicationsTable({
                   key={application.id}
                   className="w-full border-b py-3 text-sm last-of-type:border-none [&:first-child>td:first-child]:rounded-tl-lg [&:first-child>td:last-child]:rounded-tr-lg [&:last-child>td:first-child]:rounded-bl-lg [&:last-child>td:last-child]:rounded-br-lg"
                 >
-                  <td className="whitespace-nowrap px-3 py-3">
-                    <ApplicationStage stage={application.stage} />
+                  <td className="px-3 py-3 max-w-[150px] truncate whitespace-nowrap overflow-hidden">
+                    <ApplicationStage stageName={application.stage} />
                   </td>
-                  <td className="whitespace-nowrap px-3 py-3">
+                  <td className="px-3 py-3 max-w-[150px] truncate whitespace-nowrap overflow-hidden">
                     <Link href={`applications/${application.id}`} >
                       {application.company}
                     </Link>
                   </td>
-                  <td className="whitespace-nowrap px-3 py-3">
+                  <td className="px-3 py-3 max-w-[150px] truncate whitespace-nowrap overflow-hidden">
                     <Link href={`applications/${application.id}`} >
                       {application.position}
                     </Link>
                   </td>
-                  <td className="whitespace-nowrap px-3 py-3">
+                  <td className="px-3 py-3 max-w-[150px] truncate whitespace-nowrap overflow-hidden">
                     {application.ref_id}
                   </td>
-                  <td className="whitespace-nowrap px-3 py-3">
+                  <td className="px-3 py-3 max-w-[150px] truncate whitespace-nowrap overflow-hidden">
                     {formatDateToLocal(application.apply_date)}
                   </td>
-                  <td className="whitespace-nowrap px-3 py-3">
+                  <td className="px-3 py-3 max-w-[150px] truncate whitespace-nowrap overflow-hidden">
                     <div className="flex flex-wrap items-center gap-2 bg-yellow-50 py-1">
-                      {Object.keys(application.location).length === 0 ? '' : application.location.map((loc) => (
+                      {application.location_colors == null ? '' : application.location_colors.map((loc) => (
                         <div
                           key={application.id + loc?.name}
                           className={`flex items-center px-2 py-1 text-white text-sm rounded ${loc?.color}`}
@@ -115,8 +114,8 @@ export default async function applicationsTable({
                       ))}
                     </div>
                   </td>
-                  <td className="whitespace-nowrap px-3 py-3">
-                    {formatDateToLocal(application.apply_date)}
+                  <td className="px-3 py-3 max-w-[150px] truncate whitespace-nowrap overflow-hidden">
+                    {formatDateToLocal(application.last_updated)}
                   </td>
                   <td className="whitespace-nowrap py-3 pl-6 pr-3">
                     <div className="flex justify-end gap-3">

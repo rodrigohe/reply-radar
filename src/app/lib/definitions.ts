@@ -10,26 +10,26 @@ export type Stages = {
   color: string;
 };
 
-export type Locations = {
+export type LocationColors = {
   name: string;
   color: string;
-}
+};
 
 export type Application = {
   id: string;
   company: string;
   position: string;
-  stage: Stages;
+  stage: string;
   link: string;
   ref_id: string;
   apply_date: string;
-  location: Locations[];
+  location: string;
+  location_colors: LocationColors[] | null;
   description: string;
   created_date: string;
   last_updated: string;
 };
 
-export type ApplicationRaw = Omit<Application, 'location' | 'stage'> & {
-  location: string;
-  stage: string;
+export type ApplicationRaw = Omit<Application, 'location_colors'> & {
+  location_colors: string | null;
 };

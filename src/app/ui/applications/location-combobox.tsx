@@ -4,18 +4,18 @@ import { SetStateAction, useState } from "react";
 import { Combobox, ComboboxButton, ComboboxInput, ComboboxOption, ComboboxOptions } from "@headlessui/react";
 import { ChevronUpDownIcon, XMarkIcon, CheckIcon, PlusCircleIcon } from "@heroicons/react/24/solid";
 import { colorClasses, defaultLocations } from "@/app/lib/utils";
-import { Locations } from "@/app/lib/definitions";
+import { LocationColors } from "@/app/lib/definitions";
 
 export default function LocationComboBox({
   defaultSelected,
   readOnly = false,
 }: {
-  defaultSelected?: Locations[];
+  defaultSelected: LocationColors[] | null;
   readOnly?: boolean;
 }) {
   console.log(defaultSelected)
   const [locations, setLocations] = useState(defaultLocations);
-  const [selectedLocations, setSelectedLocations] = useState<Locations[]>(defaultSelected ?? []);
+  const [selectedLocations, setSelectedLocations] = useState<LocationColors[]>(defaultSelected == null ? [] : defaultSelected);
   const [query, setQuery] = useState("");
 
   // Filter locations based on user input
@@ -105,6 +105,8 @@ export default function LocationComboBox({
           </ComboboxOptions>
         </div>
       </Combobox>
+      <input type="hidden" name="location" value={selectedLocations.map(l => l.name).join(', ')}></input>
+      <input type="hidden" name="location_colors" value={selectedLocations.length > 0 ? JSON.stringify(selectedLocations) : ''}></input>
     </div>
   );
 }

@@ -1,3 +1,4 @@
+import { fetchApplicationsPages } from "@/app/lib/data";
 import CreateApplication from "@/app/ui/applications/buttons";
 import Pagination from "@/app/ui/applications/pagination";
 import Table from "@/app/ui/applications/table";
@@ -14,8 +15,7 @@ export default async function Page(props: {
   const searchParams = await props.searchParams;
   const query = searchParams?.query || '';
   const currentPage = Number(searchParams?.page) || 1;
-  const totalPages = 10;
-  
+  const totalPages = await fetchApplicationsPages(query);
   return (
     <div className="w-full">
       <div className="flex w-full items-center justify-between">
@@ -23,13 +23,13 @@ export default async function Page(props: {
       </div>
       <div className="mt-4 flex items-center justify-between gap-2 md:mt-8">
         <Search placeholder="Search applications..." />
-        <CreateApplication msg="New Application" disabled={false}/>
+        <CreateApplication msg="New Application"/>
       </div>
       <Suspense key={query + currentPage} fallback={<InvoicesTableSkeleton />}>
         <Table query={query} currentPage={currentPage} />
       </Suspense>
       <div className="mt-5 flex w-full justify-center">
-        <Pagination totalPages={totalPages} />
+      <Pagination totalPages={totalPages} />
       </div>
     </div>
   )

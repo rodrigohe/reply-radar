@@ -1,4 +1,16 @@
-import { Locations, Stages } from "./definitions";
+import { LocationColors } from "./definitions";
+
+export const getStageColor = (
+  stageName: string,
+) => {
+  return stageOptions.find((s) => s.name === stageName)
+}
+
+export const getLocationColor = (
+  location: string,
+) => {
+  return defaultLocations.find((loc) => loc.name === location)
+}
 
 export const formatCurrency = (amount: number) => {
   return (amount / 100).toLocaleString('en-US', {
@@ -9,8 +21,12 @@ export const formatCurrency = (amount: number) => {
 
 export const formatDateToLocal = (
   dateStr: string,
-  locale: string = 'en-US',
+  locale: string = 'en-CA',
 ) => {
+  if (dateStr == null){
+    return ''
+  }
+
   const date = new Date(dateStr);
   const options: Intl.DateTimeFormatOptions = {
     day: 'numeric',
@@ -54,16 +70,17 @@ export const generatePagination = (currentPage: number, totalPages: number) => {
   ];
 };
 
-
 export const stageOptions = [
-  { name: 'To Apply', color: 'bg-gray-400' },
+  { name: 'To apply', color: 'bg-gray-600' },
   { name: 'Applied', color: 'bg-yellow-400' },
   { name: 'OA', color: 'bg-blue-500' },
   { name: 'Interviewing', color: 'bg-purple-500' },
   { name: 'Failed', color: 'bg-yellow-800' },
   { name: 'Offer', color: 'bg-green-500' },
   { name: 'Rejected', color: 'bg-red-600' },
-] as Stages[];
+];
+
+export const defaultStageOption = stageOptions[0];
 
 export const defaultLocations = [
   { name: "Toronto", color: "bg-pink-600" },
@@ -83,7 +100,9 @@ export const defaultLocations = [
   { name: "Montreal", color: "bg-blue-400" },
   { name: "Ireland", color: "bg-purple-500" },
   { name: "Alberta", color: "bg-blue-300" },
-] as Locations[];
+  { name: "San Mateo", color: "bg-orange-500" },
+  { name: "Saskatoon", color: "bg-blue-300" },
+] as LocationColors[];
 
 export const colorClasses = [
   "bg-pink-600", "bg-blue-600", "bg-yellow-600", "bg-red-600",

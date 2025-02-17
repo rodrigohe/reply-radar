@@ -28,7 +28,7 @@ export default function StageDropdown({
           </ListboxButton>
 
           <ListboxOptions className="absolute mt-2 w-full text-sm bg-yellow-50 text-black rounded-lg shadow-lg max-h-60 overflow-y-auto z-50">
-            {Object.keys(stageOptions).length === 0 ? '' : stageOptions.map((stage) => (
+            {stageOptions.map((stage) => (
               <ListboxOption
                 key={stage.name}
                 value={stage}
@@ -48,6 +48,7 @@ export default function StageDropdown({
           </ListboxOptions>
         </div>
       </Listbox>
+      <input type="hidden" name="stage" value={selectedStage?.name}></input>
     </div>
   );
 }

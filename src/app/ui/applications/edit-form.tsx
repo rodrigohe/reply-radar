@@ -1,8 +1,9 @@
 import LocationComboBox from "@/app/ui/applications/location-combobox";
-import CreateApplication from "./buttons";
 import StageDropdown from "./stage-dropdown";
-import { Application } from "@/app/lib/definitions";
-import { formatDateToLocal } from "@/app/lib/utils";
+import { Application, Stages } from "@/app/lib/definitions";
+import { getStageColor } from "@/app/lib/utils";
+import Link from "next/link";
+import { Button } from "../button";
 
 export default function EditForm({
   data,
@@ -55,20 +56,22 @@ export default function EditForm({
             <input
               type="date"
               placeholder=""
+              defaultValue={data.apply_date == null ? undefined : new Date(data.apply_date).toISOString().split('T')[0]}
               className={`bg-yellow-50 text-black text-sm rounded-lg block w-full p-2.5 ${readOnly ? 'hidden' : ''}`}
-              // defaultValue={formatDateToLocal(data.apply_date)}
             />
-            <p
+            <input
+              type="date"
+              placeholder=""
+              defaultValue={data.apply_date == null ? undefined : new Date(data.apply_date).toISOString().split('T')[0]}
               className={`bg-yellow-50 text-black text-sm rounded-lg block w-full p-2.5 ${readOnly ? '' : 'hidden'}`}
-            >
-              {formatDateToLocal(data.apply_date)}
-            </p>
+              disabled={true}
+            />
           </div>
 
           {/* Stage */}
           <div className="mb-5 md:w-1/4 md:flex-grow">
             <label className="block mb-2"> Stage </label>
-            <StageDropdown defaultSelected={data.stage} />
+            <StageDropdown defaultSelected={getStageColor(data.stage) as Stages} />
           </div>
 
           {/* Link */}
@@ -77,7 +80,7 @@ export default function EditForm({
             <input
               type="text"
               placeholder="e.g. linked.in/jobs/1231"
-              className={`bg-yellow-50 text-black text-sm rounded-lg block w-full p-2.5 ${readOnly === true ? 'hidden' : ''}`}
+              className={`bg-yellow-50 text-black text-sm rounded-lg block w-full p-2.5 overflow-hidden text-ellipsis ${readOnly === true ? 'hidden' : ''}`}
               defaultValue={data.link}
             />
             <p
@@ -93,10 +96,10 @@ export default function EditForm({
           <div className="mb-5 md:w-3/4 md:flex-grow">
             <label className="block mb-2"> Location </label>
             <div className={`${readOnly === true ? 'hidden' : ''}`}>
-              <LocationComboBox defaultSelected={data.location.length === undefined ? undefined : data.location} readOnly={false} />
+              <LocationComboBox defaultSelected={data.location_colors} readOnly={false} />
             </div>
             <div className={`${readOnly === true ? '' : 'hidden'}`}>
-              <LocationComboBox defaultSelected={data.location.length === undefined ? undefined : data.location} readOnly={true} />
+              <LocationComboBox defaultSelected={data.location_colors} readOnly={true} />
             </div>
 
           </div>
@@ -135,9 +138,16 @@ export default function EditForm({
           </textarea>
         </div>
 
-        <CreateApplication msg="Create Application"/>
       </fieldset>
-
+      <div className={`mt-6 flex justify-between gap-4 ${readOnly ? 'hidden' : ''}`}>
+        <Link
+          href="/dashboard/applications"
+          className="flex h-10 items-center rounded-lg bg-red-500 px-4 text-sm font-medium text-white transition-colors hover:bg-red-400"
+        >
+          Cancel
+        </Link>
+        <Button type="submit">Update Application</Button>
+      </div>
     </form>
   )
 }
