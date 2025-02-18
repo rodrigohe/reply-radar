@@ -96,7 +96,7 @@ export default function CreateForm() {
           <label className="block mb-2"> Job Id </label>
           <input
             id="ref_id"
-            name="red_id"
+            name="ref_id"
             type="text"
             placeholder="e.g. a2nb3b"
             className={`bg-yellow-50 text-black text-sm rounded-lg block w-full p-2.5 `}

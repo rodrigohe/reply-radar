@@ -60,7 +60,7 @@ export default function Form() {
         {/* Location */}
         <div className="mb-5 md:w-3/4 md:flex-grow">
           <label className="block mb-2"> Location </label>
-          <LocationComboBox />
+          <LocationComboBox defaultSelected={null} />
         </div>
 
         {/* Ref-id */}

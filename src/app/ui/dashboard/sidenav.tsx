@@ -3,6 +3,7 @@ import { PowerIcon } from '@heroicons/react/24/outline';
 import { redirect } from 'next/navigation';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faJsSquare } from '@fortawesome/free-brands-svg-icons';
+import { signOut } from '../../../auth';
 
 export default function SideNav() {
   return (
@@ -14,7 +15,7 @@ export default function SideNav() {
         <form
           action={async () => {
             'use server';
-            redirect('/');
+            await signOut({ redirectTo: '/' });
           }}
         >
           <button className="flex h-[48px] w-full grow items-center justify-center gap-2 rounded-md bg-stone-400 p-3 text-sm font-medium hover:bg-yellow-50 hover:text-[#292121] md:flex-none md:justify-start md:p-2 md:px-3">

@@ -1,7 +1,7 @@
 import Breadcrumbs from '@/app/ui/applications/breadcrumbs';
 import CreateForm from '@/app/ui/applications/create-form';
 
-export default async function Page() {
+export default async function NewApplication() {
   // const customers = await fetchCustomers();
 
   return (
