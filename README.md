@@ -3,6 +3,15 @@ Keep tabs on how many job applications when unanswered!
 
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
+## Credentials
+| email           | password     |
+|-----------------|--------------|
+| test@email.com  | Password123! |
+| user1@email.com | abcd1234     |
+| user2@email.com | abcd1234     |
+| user3@email.com | abcd1234     |
+| user4@email.com | abcd1234     |
+
 ## Getting Started
 
 First, run the development server:

@@ -1,0 +1,6 @@
+user_id,email,password
+c94d93f8-33cf-4ed7-8242-e719db526d2b,test@email.com,$2y$10$HxFSZxZDIerYSHLwcv3GbeJgNi8OlNwFeEdh0xzX9QGAm/1VLpA5G
+c58f02ff-ac64-4442-8abd-80e56838a06b,user1@email.com,$2b$10$B5YEs4xNfUx06D8Z2J9NuO7GEInYjTZ1l3utI/Ldl5zAoc4JuUBEi
+d50ec4d6-c481-45ac-9766-fc6711375a8b,user2@email.com,$2b$10$h7SP8JvNMBsbr1xE/.X5PuPEs2rAbykWCtRj/.nRTdp.Hw0EvD0lu
+4c61cb31-09b3-4afa-8416-e71b54d4ceaa,user3@email.com,$2b$10$RwqxWdIM19cQX2kfaxpYDetyCYtgNV/TpLr186SILXSm2Z64ieqtG
+68758506-9e2f-4195-bd53-2e942bec2185,user4@email.com,$2y$10$kJcyNJZ121jLMGmfG80vEeDsxdLcg6OVY6gWN9eTy66vIPJQSZqh2
