@@ -3,7 +3,7 @@ import CreateApplication from "@/app/ui/applications/buttons";
 import Pagination from "@/app/ui/applications/pagination";
 import Table from "@/app/ui/applications/table";
 import Search from "@/app/ui/search";
-import { InvoicesTableSkeleton } from "@/app/ui/skeletons";
+import { ApplicationsTableSkeleton } from "@/app/ui/skeletons";
 import { Suspense } from "react";
 
 export default async function Page(props: {
@@ -27,7 +27,7 @@ export default async function Page(props: {
         </Suspense>
         <CreateApplication msg="New Application" />
       </div>
-      <Suspense key={query + currentPage} fallback={<InvoicesTableSkeleton />}>
+      <Suspense key={query + currentPage} fallback={<ApplicationsTableSkeleton />}>
         <Table query={query} currentPage={currentPage} />
       </Suspense>
       <div className="mt-5 flex w-full justify-center">

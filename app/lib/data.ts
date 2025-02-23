@@ -1,5 +1,5 @@
 import postgres from "postgres";
-import { Application, UsersLocationColors } from "./definitions";
+import { Application, AppsCountPerYearMonth, CountByStage, UsersLocationColors } from "./definitions";
 import { auth } from "@/auth";
 
 const sql = postgres(process.env.POSTGRES_URL!);
@@ -79,6 +79,50 @@ export async function getUserLocationColors(user_id: string) {
       WHERE user_id = ${user_id}`;
     return result[0];
 
+  } catch (error) {
+    console.error('Database Error:', error);
+    throw new Error('Failed to User\'s LocationColors');
+  }
+}
+
+export async function getApplicationsCountByStage(user_id: string) {
+  try {
+    const result = await sql<CountByStage[]>`
+      SELECT stage, count(*), NULL as color_hex
+      FROM applications
+      WHERE user_id = ${user_id}
+      GROUP BY stage`;
+    return result;
+  } catch (error) {
+    console.error('Database Error:', error);
+    throw new Error('Failed to User\'s LocationColors');
+  }
+}
+
+export async function getApplicationsByStage(user_id: string, stage: string){
+  try {
+    const result = await sql<Application[]>`
+      SELECT *
+      FROM applications
+      WHERE user_id = ${user_id} AND stage = ${stage} LIMIT 5`;
+    return result;
+  } catch (error) {
+    console.error('Database Error:', error);
+    throw new Error('Failed to User\'s LocationColors');
+  }
+}
+
+export async function getApplicationCountPerMonth(user_id: string){
+  try {
+    const result = await sql<AppsCountPerYearMonth[]>`
+      SELECT TO_CHAR(apply_date, 'Mon') AS mon, DATE_PART('month', apply_date) AS month, DATE_PART('year', apply_date) AS year, COUNT(*)
+      FROM applications
+      WHERE user_id = ${user_id}
+      GROUP BY mon, month, year
+      ORDER BY year, month
+      `;
+      console.log(result);
+    return result;
   } catch (error) {
     console.error('Database Error:', error);
     throw new Error('Failed to User\'s LocationColors');

@@ -71,13 +71,13 @@ export const generatePagination = (currentPage: number, totalPages: number) => {
 };
 
 export const stageOptions = [
-  { name: 'To apply', color: 'bg-gray-600' },
-  { name: 'Applied', color: 'bg-yellow-400' },
-  { name: 'OA', color: 'bg-blue-500' },
-  { name: 'Interviewing', color: 'bg-purple-500' },
-  { name: 'Failed', color: 'bg-yellow-800' },
-  { name: 'Offer', color: 'bg-green-500' },
-  { name: 'Rejected', color: 'bg-red-600' },
+  { name: 'To apply', color: 'bg-gray-600', color_hex: '#757575' },
+  { name: 'Applied', color: 'bg-yellow-400', color_hex: '#FFEE58' },
+  { name: 'OA', color: 'bg-blue-500', color_hex: '#2196F3' },
+  { name: 'Interviewing', color: 'bg-purple-500', color_hex: '#9C27B0' },
+  { name: 'Failed', color: 'bg-yellow-800', color_hex: '#F9A825' },
+  { name: 'Offer', color: 'bg-green-500', color_hex: '#4CAF50' },
+  { name: 'Rejected', color: 'bg-red-600', color_hex: '#E53935' },
 ];
 
 export const defaultStageOption = stageOptions[0];

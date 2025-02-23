@@ -29,15 +29,24 @@ export type Application = {
   last_updated: string;
 };
 
-export type ApplicationRaw = Omit<Application, 'location_colors'> & {
-  location_colors: string | null;
-};
-
 export type UsersLocationColors = {
-  id: string,
-  user_id: string,
+  id: string;
+  user_id: string;
   location: string;
   location_colors: LocationColors[] | null;
   created_date: string;
   last_updated: string;
+}
+
+export type CountByStage = {
+  stage: string;
+  count: number;
+  color_hex: string;
+}
+
+export type AppsCountPerYearMonth = {
+  mon: string;
+  month: number;
+  year: number;
+  count: number;
 }

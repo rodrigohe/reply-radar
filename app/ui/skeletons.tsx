@@ -33,7 +33,7 @@ export function TableRowSkeleton() {
   );
 }
 
-export function InvoicesMobileSkeleton() {
+export function ApplicationsMobileSkeleton() {
   return (
     <div className="mb-2 w-full rounded-md bg-yellow-50 p-4">
       <div className="flex items-center justify-between border-b border-gray-100 pb-8">
@@ -57,18 +57,18 @@ export function InvoicesMobileSkeleton() {
   );
 }
 
-export function InvoicesTableSkeleton() {
+export function ApplicationsTableSkeleton() {
   return (
     <div className="mt-6 flow-root">
       <div className="inline-block min-w-full align-middle">
         <div className="rounded-lg bg-stone-400 p-2 md:pt-0">
           <div className="md:hidden">
-            <InvoicesMobileSkeleton />
-            <InvoicesMobileSkeleton />
-            <InvoicesMobileSkeleton />
-            <InvoicesMobileSkeleton />
-            <InvoicesMobileSkeleton />
-            <InvoicesMobileSkeleton />
+            <ApplicationsMobileSkeleton />
+            <ApplicationsMobileSkeleton />
+            <ApplicationsMobileSkeleton />
+            <ApplicationsMobileSkeleton />
+            <ApplicationsMobileSkeleton />
+            <ApplicationsMobileSkeleton />
           </div>
           <table className="hidden min-w-full p-4 text-black md:table">
             <thead className="rounded-lg text-left text-sm font-normal">
@@ -115,6 +115,42 @@ export function InvoicesTableSkeleton() {
               <TableRowSkeleton />
             </tbody>
           </table>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+
+export function ApplciationsToFinishCardSkeleton() {
+  return (
+    <div className="mb-2 w-full rounded-md bg-yellow-50 p-4">
+      <div className="flex items-center justify-between">
+        <div className="mb-2 flex items-center">
+          <div className="h-6 w-16 rounded bg-gray-100"></div>
+        </div>
+        <div className="h-6 w-16 rounded bg-gray-100"></div>
+      </div>
+      <div className="flex justify-end gap-2">
+        <div className="h-10 w-10 rounded bg-gray-100"></div>
+        <div className="h-10 w-10 rounded bg-gray-100"></div>
+      </div>
+    </div>
+  );
+}
+
+export function ApplicationsToFinishSkeleton() {
+  return (
+    <div className="flex flex-col items-start">
+      <div className="w-full max-w-2xl flex flex-col">
+        <div className="bg-stone-400 p-2 rounded-lg space-y-2 w-full">
+          <div>
+            <ApplciationsToFinishCardSkeleton />
+            <ApplciationsToFinishCardSkeleton />
+            <ApplciationsToFinishCardSkeleton />
+            <ApplciationsToFinishCardSkeleton />
+            <ApplciationsToFinishCardSkeleton />
+          </div>
         </div>
       </div>
     </div>
