@@ -1,6 +1,4 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
 
 /* https://colorhunt.co/palette/fff0d17957576643433b3030 */
 
